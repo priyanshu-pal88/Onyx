@@ -85,7 +85,15 @@ const PostModal = ({ post, onClose, onEdit, onDelete, isOwner, userInfo }) => {
 
     return (
         <div className='fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 p-2 sm:p-4' onClick={onClose}>
-            <div className='bg-white rounded-2xl sm:rounded-3xl max-w-6xl w-full max-h-[95vh] sm:max-h-[90vh] flex flex-col sm:flex-row overflow-hidden shadow-2xl' onClick={(e) => e.stopPropagation()}>
+            <div className='bg-white rounded-2xl sm:rounded-3xl max-w-6xl w-full max-h-[95vh] sm:max-h-[90vh] flex flex-col sm:flex-row overflow-hidden shadow-2xl relative' onClick={(e) => e.stopPropagation()}>
+                {/* Close Button */}
+                <button
+                    onClick={onClose}
+                    className='absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-white/90 hover:bg-white text-gray-600 hover:text-gray-900 p-2 sm:p-2.5 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110'
+                    title='Close'
+                >
+                    <i className="ri-close-line text-xl sm:text-2xl"></i>
+                </button>
 
                 <div className='w-full sm:w-3/5 bg-linear-to-br from-gray-50 to-gray-100 flex items-center justify-center p-2 sm:p-4'>
                     <img
