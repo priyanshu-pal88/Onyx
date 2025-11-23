@@ -13,7 +13,7 @@ const App = () => {
   }, [dispatch])
 
   return (
-    <div className='bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 text-gray-900 min-h-screen'>
+    <div className='bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50 text-gray-900 min-h-screen'>
        <NavBar/>
       
       <MainRoutes/>
