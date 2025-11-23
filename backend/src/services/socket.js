@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { Server } = require("socket.io");
 const http = require("http");
 const express = require("express");
@@ -12,7 +13,7 @@ const getReceiverSocketId = (userId) => {
 function initSocketServer(server) {
     io = new Server(server, {
         cors: {
-            origin: "http://localhost:5173",
+            origin: process.env.FRONTEND_URL,
             allowedHeaders: ["my-custom-header"],
             credentials: true
         }
