@@ -97,20 +97,20 @@ const UserProfile = () => {
     const posts = otherUserInfo.posts || []
 
     return (
-        <div className='max-w-5xl mx-auto px-4 py-8'>
+        <div className='max-w-5xl mx-auto px-4 py-4 sm:py-8'>
             {/* Back Button */}
             <button 
                 onClick={() => navigate(-1)}
-                className='mb-6 hover:bg-purple-50 px-4 py-2 rounded-xl flex items-center gap-2 transition-all group'
+                className='mb-4 sm:mb-6 hover:bg-purple-50 px-3 sm:px-4 py-2 rounded-xl flex items-center gap-2 transition-all group'
             >
-                <i className="ri-arrow-left-line text-xl text-gray-600 group-hover:text-purple-600"></i>
-                <span className='font-medium text-gray-700 group-hover:text-purple-600'>Back</span>
+                <i className="ri-arrow-left-line text-lg sm:text-xl text-gray-600 group-hover:text-purple-600"></i>
+                <span className='font-medium text-sm sm:text-base text-gray-700 group-hover:text-purple-600'>Back</span>
             </button>
 
             {/* Profile Header */}
-            <div className='flex items-start gap-10 mb-12'>
+            <div className='flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10 mb-8 sm:mb-12'>
                 <div className='shrink-0'>
-                    <div className='w-40 h-40 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400 ring-4 ring-purple-100 shadow-xl'>
+                    <div className='w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden bg-linear-to-br from-purple-400 to-pink-400 ring-4 ring-purple-100 shadow-xl'>
                         {user?.profilePic ? (
                             <img src={user.profilePic} alt="profile" className='w-full h-full object-cover' />
                         ) : (
@@ -120,15 +120,15 @@ const UserProfile = () => {
                         )}
                     </div>
                 </div>
-                <div className='flex-1'>
-                    <div className='flex items-center gap-5 mb-8'>
-                        <h2 className='text-3xl font-bold text-gray-900'>
+                <div className='flex-1 w-full sm:w-auto text-center sm:text-left'>
+                    <div className='flex flex-col sm:flex-row items-center sm:items-center gap-3 sm:gap-5 mb-6 sm:mb-8'>
+                        <h2 className='text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900'>
                             {user?.fullName?.firstName} {user?.fullName?.lastName}
                         </h2>
                         {isFriend ? (
                             <button 
                                 onClick={handleRemoveFriend}
-                                className='px-6 py-2.5 bg-linear-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white rounded-xl font-semibold text-sm flex items-center gap-2 shadow-md hover:shadow-lg transition-all transform hover:scale-105'
+                                className='px-4 sm:px-6 py-2 sm:py-2.5 bg-linear-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-md hover:shadow-lg transition-all transform hover:scale-105'
                             >
                                 <i className="ri-user-unfollow-line"></i>
                                 Remove Friend
@@ -136,7 +136,7 @@ const UserProfile = () => {
                         ) : hasSentRequest ? (
                             <button 
                                 disabled
-                                className='px-6 py-2.5 bg-gray-300 text-gray-500 rounded-xl font-semibold text-sm flex items-center gap-2 cursor-not-allowed'
+                                className='px-4 sm:px-6 py-2 sm:py-2.5 bg-gray-300 text-gray-500 rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-2 cursor-not-allowed'
                             >
                                 <i className="ri-time-line"></i>
                                 Pending
@@ -144,29 +144,30 @@ const UserProfile = () => {
                         ) : hasReceivedRequest ? (
                             <button 
                                 onClick={() => navigate('/notifications')}
-                                className='px-6 py-2.5 bg-linear-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-xl font-semibold text-sm flex items-center gap-2 shadow-md hover:shadow-lg transition-all transform hover:scale-105'
+                                className='px-4 sm:px-6 py-2 sm:py-2.5 bg-linear-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-md hover:shadow-lg transition-all transform hover:scale-105'
                             >
                                 <i className="ri-checkbox-circle-line"></i>
-                                Respond to Request
+                                <span className='hidden sm:inline'>Respond to Request</span>
+                                <span className='sm:hidden'>Respond</span>
                             </button>
                         ) : (
                             <button 
                                 onClick={handleSendFriendRequest}
-                                className='px-6 py-2.5 bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl font-semibold text-sm flex items-center gap-2 shadow-md hover:shadow-lg transition-all transform hover:scale-105'
+                                className='px-4 sm:px-6 py-2 sm:py-2.5 bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-md hover:shadow-lg transition-all transform hover:scale-105'
                             >
                                 <i className="ri-user-add-line"></i>
                                 Add Friend
                             </button>
                         )}
                     </div>
-                    <div className='flex gap-12 mb-6'>
-                        <div className='flex gap-2'>
-                            <span className='font-bold text-gray-900'>{posts.length}</span>
-                            <span className='text-gray-600'>posts</span>
+                    <div className='flex gap-6 sm:gap-8 lg:gap-12 mb-4 sm:mb-6 justify-center sm:justify-start'>
+                        <div className='flex gap-1 sm:gap-2'>
+                            <span className='font-bold text-gray-900 text-sm sm:text-base'>{posts.length}</span>
+                            <span className='text-gray-600 text-sm sm:text-base'>posts</span>
                         </div>
-                        <div className='flex gap-2'>
-                            <span className='font-bold text-gray-900'>{user?.friends?.length || 0}</span>
-                            <span className='text-gray-600'>friends</span>
+                        <div className='flex gap-1 sm:gap-2'>
+                            <span className='font-bold text-gray-900 text-sm sm:text-base'>{user?.friends?.length || 0}</span>
+                            <span className='text-gray-600 text-sm sm:text-base'>friends</span>
                         </div>
                     </div>
                     <div>

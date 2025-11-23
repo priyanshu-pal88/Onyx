@@ -294,7 +294,13 @@ const PostModal = ({ post, onClose, onEdit, onDelete, isOwner, userInfo }) => {
                         <p className='font-bold text-gray-900 text-sm mb-1'>
                             {likeCount} {likeCount === 1 ? 'like' : 'likes'}
                         </p>
-                        <p className='text-gray-400 text-xs uppercase tracking-wide'>2 hours ago</p>
+                        <p className='text-gray-400 text-xs uppercase tracking-wide'>
+                            {new Date(post.createdAt).toLocaleDateString('en-US', { 
+                                month: 'long', 
+                                day: 'numeric', 
+                                year: 'numeric' 
+                            })}
+                        </p>
                     </div>
 
                     <div className='border-t border-gray-100 p-5 flex items-center gap-3'>

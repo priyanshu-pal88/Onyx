@@ -48,7 +48,7 @@ const SuggestedFriends = ({ className = '' }) => {
 
   return (
     <aside 
-      className={`fixed lg:sticky left-0 lg:left-auto top-0 lg:top-0 bottom-0 lg:bottom-auto w-80 lg:w-80 bg-white/80 backdrop-blur-xl border-r lg:border-r-0 lg:border-l border-gray-100 p-4 sm:p-6 overflow-y-auto lg:h-screen shadow-2xl lg:shadow-lg z-40 ${className}`}
+      className={`fixed lg:sticky left-0 lg:left-auto top-0 lg:top-0 bottom-0 lg:bottom-auto w-80 lg:w-80 bg-white/80 backdrop-blur-xl border-r lg:border-r-0 lg:border-l border-gray-100 pt-20 lg:pt-0 p-4 sm:p-6 overflow-y-auto lg:h-screen shadow-2xl lg:shadow-lg z-40 ${className}`}
       style={{
         animation: 'slideInFromLeft 0.3s ease-out'
       }}
