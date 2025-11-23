@@ -31,7 +31,12 @@ async function registerUser(req, res) {
         })
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" })
-        res.cookie("token", token)
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
 
         return res.status(201).json({
             message: "User registered successfully",
@@ -71,7 +76,12 @@ async function loginUser(req, res) {
         }
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" })
-        res.cookie("token", token)
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
         return res.status(200).json({
             message: "User Logged in Successfully",
             user: {
@@ -112,7 +122,7 @@ async function logoutUser(req, res) {
 async function updateUser(req, res) {
     try {
         const user = req.user;
-        const { bio, firstName,lastName, password } = req.body || {};
+        const { bio, firstName, lastName, password } = req.body || {};
         let fullName = { firstName, lastName };
 
 
