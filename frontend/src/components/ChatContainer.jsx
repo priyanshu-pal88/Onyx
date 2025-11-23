@@ -138,14 +138,6 @@ const ChatContainer = ({ selectedUser }) => {
             const currentUserId = userInfo?._id
             const isMyMessage = messageSenderId?.toString() === currentUserId?.toString()
             
-            // Debug log
-            console.log('Message:', { 
-              messageSenderId, 
-              currentUserId, 
-              isMyMessage,
-              content: message.content 
-            })
-            
             return (
               <div
                 key={message._id || index}

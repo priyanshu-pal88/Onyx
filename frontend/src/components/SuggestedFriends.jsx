@@ -48,19 +48,20 @@ const SuggestedFriends = ({ className = '' }) => {
 
   return (
     <aside 
-      className={`fixed lg:sticky left-0 lg:left-auto top-0 lg:top-0 bottom-0 lg:bottom-auto w-80 lg:w-80 bg-white/80 backdrop-blur-xl border-r lg:border-r-0 lg:border-l border-gray-100 pt-20 lg:pt-0 p-4 sm:p-6 overflow-y-auto lg:h-screen shadow-2xl lg:shadow-lg z-40 ${className}`}
+      className={`fixed lg:sticky left-0 lg:left-auto top-0 lg:top-0 bottom-0 lg:bottom-auto w-80 lg:w-80 bg-white/80 backdrop-blur-xl border-r lg:border-r-0 lg:border-l border-gray-100 lg:pt-0 p-4 sm:p-6 overflow-y-auto lg:h-screen shadow-2xl lg:shadow-lg z-40 ${className}`}
       style={{
-        animation: 'slideInFromLeft 0.3s ease-out'
+        animation: 'slideInFromLeft 0.3s ease-out',
+        paddingTop: 'max(5rem, env(safe-area-inset-top))'
       }}
     >
-      <div className='flex items-center justify-between mb-6'>
+      <div className='flex items-center justify-between mb-6 relative'>
         <div>
           <h3 className='text-lg font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent'>Suggested Friends</h3>
           <p className='text-xs text-gray-500 mt-0.5'>People you may know</p>
         </div>
         <button
           onClick={() => setIsOpen(false)}
-          className='text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-2 rounded-xl transition-all'
+          className='text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-2 rounded-xl transition-all z-50 relative'
           title='Close'
         >
           <i className="ri-close-line text-xl"></i>
