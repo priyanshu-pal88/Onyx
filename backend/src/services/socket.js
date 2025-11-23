@@ -1,4 +1,3 @@
-require("dotenv").config();
 const { Server } = require("socket.io");
 const http = require("http");
 const express = require("express");
@@ -13,7 +12,7 @@ const getReceiverSocketId = (userId) => {
 function initSocketServer(server) {
     io = new Server(server, {
         cors: {
-            origin: process.env.FRONTEND_URL,
+            origin: "https://onyx-eta-one.vercel.app",
             allowedHeaders: ["my-custom-header"],
             credentials: true
         }
