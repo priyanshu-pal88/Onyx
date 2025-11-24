@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { getSuggestedUsers, sendFriendRequest } from '../store/friendSlice'
 
 const SuggestedFriends = ({ className = '' }) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { suggestedUsers = [], loading, error } = useSelector((state) => state.friendReducer)
   const { userInfo, isAuthenticated } = useSelector((state) => state.userReducer)
   const [isOpen, setIsOpen] = useState(true)
@@ -84,7 +86,10 @@ const SuggestedFriends = ({ className = '' }) => {
           {suggestedUsers.map((user) => (
             <li key={user._id} className='pb-4 border-b border-gray-100 last:border-b-0 group'>
               <div className='flex items-start gap-3'>
-                <div className='w-14 h-14 rounded-full bg-linear-to-br from-purple-400 to-pink-400 overflow-hidden shrink-0 ring-2 ring-purple-100 group-hover:ring-purple-200 transition-all'>
+                <div 
+                  onClick={() => navigate(`/userProfile/${user._id}`)}
+                  className='w-14 h-14 rounded-full bg-linear-to-br from-purple-400 to-pink-400 overflow-hidden shrink-0 ring-2 ring-purple-100 group-hover:ring-purple-200 transition-all cursor-pointer hover:ring-purple-300'
+                >
                   {user.profilePic ? (
                     <img
                       src={user.profilePic}
@@ -99,7 +104,10 @@ const SuggestedFriends = ({ className = '' }) => {
                 </div>
 
                 <div className='flex-1 min-w-0'>
-                  <h4 className='font-semibold text-gray-900 text-sm truncate'>
+                  <h4 
+                    onClick={() => navigate(`/userProfile/${user._id}`)}
+                    className='font-semibold text-gray-900 text-sm truncate cursor-pointer hover:text-purple-600 transition-colors'
+                  >
                     {user.fullName?.firstName} {user.fullName?.lastName}
                   </h4>
                   {user.bio && (

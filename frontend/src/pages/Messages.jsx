@@ -19,6 +19,10 @@ const Messages = () => {
     dispatch(setSelectedUser(user))
   }
 
+  const handleBackToFriends = () => {
+    dispatch(setSelectedUser(null))
+  }
+
   return (
     <div className='h-screen flex bg-gray-50'>
       <FriendsList
@@ -28,7 +32,10 @@ const Messages = () => {
         loading={loading}
         onlineUserIds={onlineUserIds}
       />
-      <ChatContainer selectedUser={selectedUser} />
+      <ChatContainer 
+        selectedUser={selectedUser} 
+        onBack={handleBackToFriends}
+      />
     </div>
   )
 }

@@ -76,20 +76,20 @@ const NavBar = () => {
     <nav className='flex justify-between items-center px-4 sm:px-6 py-3 sticky top-0 bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-100 z-50'>
         {isAuthenticated && (
           <>
-            <div onClick={()=>navigate('/')} className='cursor-pointer group flex items-center gap-2 sm:gap-3'>
+            <div onClick={()=>navigate('/')} className='cursor-pointer group flex items-center gap-2 sm:gap-3 shrink-0'>
                 <img src="/Onyx1.png" alt="Onyx" className='h-8 sm:h-10 w-8 sm:w-10 object-contain group-hover:scale-110 transition-transform duration-300' />
                 <span className='font-bold text-xl sm:text-2xl bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent hidden sm:block'>Onyx</span>
             </div>
-            <div className='hidden md:flex w-1/2 max-w-md relative' ref={searchRef}>
-                <div className='relative flex items-center'>
-                    <i className='ri-search-line absolute left-4 text-gray-400 text-lg'></i>
+            <div className='flex flex-1 mx-2 sm:mx-4 md:w-1/2 md:flex-initial max-w-md relative' ref={searchRef}>
+                <div className='relative flex items-center w-full'>
+                    <i className='ri-search-line absolute left-3 sm:left-4 text-gray-400 text-base sm:text-lg'></i>
                     <input 
                         type="text" 
                         name="search" 
-                        placeholder='Search users...'
+                        placeholder='Search...'
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className='w-full bg-gray-50 hover:bg-gray-100 focus:bg-white rounded-full outline-none border border-gray-200 focus:border-purple-300 pl-11 pr-4 py-2.5 text-gray-700 placeholder-gray-400 transition-all duration-200'
+                        className='w-full bg-gray-50 hover:bg-gray-100 focus:bg-white rounded-full outline-none border border-gray-200 focus:border-purple-300 pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-2.5 text-sm sm:text-base text-gray-700 placeholder-gray-400 transition-all duration-200'
                     />
                 </div>
                 

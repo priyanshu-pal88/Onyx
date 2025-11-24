@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMessages, sendMessage } from '../store/messageSlice'
 
-const ChatContainer = ({ selectedUser }) => {
+const ChatContainer = ({ selectedUser, onBack }) => {
   const dispatch = useDispatch()
   const { messages, loading } = useSelector((state) => state.messageReducer)
   const { userInfo } = useSelector((state) => state.userReducer)
@@ -76,7 +76,7 @@ const ChatContainer = ({ selectedUser }) => {
 
   if (!selectedUser) {
     return (
-      <div className='flex-1 flex items-center justify-center bg-gray-50'>
+      <div className='flex-1 items-center justify-center bg-gray-50 hidden md:flex'>
         <div className='text-center'>
           <i className="ri-message-3-line text-6xl text-gray-300 mb-4"></i>
           <p className='text-gray-500 text-lg'>Select a friend to start chatting</p>
@@ -90,6 +90,15 @@ const ChatContainer = ({ selectedUser }) => {
       {/* Chat Header */}
       <div className='bg-white border-b border-gray-200 p-4'>
         <div className='flex items-center gap-3'>
+          {/* Back button for mobile */}
+          {onBack && (
+            <button
+              onClick={onBack}
+              className='md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors'
+            >
+              <i className="ri-arrow-left-line text-xl text-gray-700"></i>
+            </button>
+          )}
           <div className='relative'>
             <div className='w-10 h-10 rounded-full bg-gray-300 overflow-hidden'>
               {selectedUser.profilePic ? (
@@ -144,7 +153,7 @@ const ChatContainer = ({ selectedUser }) => {
                 className={`flex ${isMyMessage ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                  className={`max-w-[75%] sm:max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                     isMyMessage
                       ? 'bg-blue-500 text-white'
                       : 'bg-white text-gray-800 border border-gray-200'
@@ -201,7 +210,7 @@ const ChatContainer = ({ selectedUser }) => {
             value={messageText}
             onChange={(e) => setMessageText(e.target.value)}
             placeholder='Type a message...'
-            className='flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500 text-black'
+            className='flex-1 px-3 sm:px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500 text-black text-sm sm:text-base'
           />
           <input 
             ref={fileInputRef}
@@ -211,19 +220,19 @@ const ChatContainer = ({ selectedUser }) => {
             id='image' 
             className='hidden'
           />
-          <label htmlFor="image" className='cursor-pointer hover:opacity-70'>
-            <i className="ri-image-fill text-gray-600 text-3xl"></i>
+          <label htmlFor="image" className='cursor-pointer hover:opacity-70 shrink-0'>
+            <i className="ri-image-fill text-gray-600 text-2xl sm:text-3xl"></i>
           </label>
           <button
             type='submit'
             disabled={!messageText.trim() && !selectedFile}
-            className={`p-3 rounded-full transition-colors ${
+            className={`p-2 sm:p-3 rounded-full transition-colors shrink-0 ${
               messageText.trim() || selectedFile
                 ? 'bg-blue-500 hover:bg-blue-600 text-white'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
           >
-            <i className="ri-send-plane-fill text-xl"></i>
+            <i className="ri-send-plane-fill text-lg sm:text-xl"></i>
           </button>
         </form>
       </div>
