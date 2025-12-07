@@ -269,7 +269,7 @@ const Feed = () => {
                     </div>
                     
                     {/* Add Comment Input */}
-                    <div className='flex items-center gap-1.5 sm:gap-2 mt-3'>\n                      <input
+                    <div className='flex items-center gap-1.5 sm:gap-2 mt-3'>                     <input
                         type="text"
                         placeholder='Add a comment...'
                         value={commentTexts[post._id] || ''}
@@ -284,7 +284,7 @@ const Feed = () => {
                         onClick={(e) => handleCreateComment(e, post._id)}
                         disabled={!commentTexts[post._id]?.trim()}
                         className={`font-semibold text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all ${commentTexts[post._id]?.trim() ? 'text-purple-600 hover:bg-purple-50' : 'text-gray-300'}`}
-                      >\n                        Post
+                      >                       Post
                       </button>
                     </div>
                   </div>
