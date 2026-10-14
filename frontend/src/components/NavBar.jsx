@@ -6,7 +6,7 @@ import api from '../api/axios'
 
 const NavBar = () => {
 
-    const {isAuthenticated,loading,userInfo} = useSelector((state)=>state.userReducer) 
+    const {isAuthenticated,userInfo} = useSelector((state)=>state.userReducer) 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [searchQuery, setSearchQuery] = useState('')
@@ -140,7 +140,6 @@ const NavBar = () => {
           </>
         )}
             {
-                !loading && (
                     isAuthenticated ? (
                         <>
                         {/* Desktop Navigation */}
@@ -173,7 +172,6 @@ const NavBar = () => {
                             <button onClick={() => navigate('/register')} className='px-3 sm:px-5 py-2 text-sm sm:text-base bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl font-semibold shadow-md hover:shadow-lg transition-all duration-300'>Sign Up</button>
                         </div>
                     )
-                )
             }
             
             {/* Mobile Menu Dropdown */}

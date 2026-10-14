@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../store/userSlice'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
@@ -10,6 +10,7 @@ const Login = () => {
     const { register, reset, handleSubmit } = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { isLoginLoading } = useSelector((state) => state.userReducer)
 
     const submitHandler = async (data) => {
         try {
@@ -62,9 +63,13 @@ const Login = () => {
                   </div>
                 </div>
                 
-                <button className='w-full bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]'>
-                  <i className="ri-login-box-line mr-2"></i>
-                  Sign In
+                <button
+                  type='submit'
+                  disabled={isLoginLoading}
+                  className='w-full bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-purple-400 disabled:to-pink-400 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:hover:scale-100'
+                >
+                  <i className={`${isLoginLoading ? "ri-loader-4-line animate-spin" : "ri-login-box-line"} mr-2`}></i>
+                  {isLoginLoading ? "Signing In..." : "Sign In"}
                 </button>
                 
                 <p className='text-center text-gray-600 text-sm'>

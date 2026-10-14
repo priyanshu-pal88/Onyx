@@ -161,6 +161,7 @@ const userSlice = createSlice({
     initialState: {
         userInfo: null,
         loading: false,
+        isLoginLoading: false,
         isAuthenticated: false,
         error: null
     },
@@ -190,14 +191,17 @@ const userSlice = createSlice({
         builder
             .addCase(loginUser.pending, (state, action) => {
                 state.loading = true
+                state.isLoginLoading = true
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.loading = false
+                state.isLoginLoading = false
                 state.userInfo = action.payload
                 state.isAuthenticated = true
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.loading = false
+                state.isLoginLoading = false
                 state.isAuthenticated = false
                 state.error = action.payload
             })
