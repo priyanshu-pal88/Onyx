@@ -14,12 +14,12 @@ const Login = () => {
     const submitHandler = async (data) => {
         try {
             const { email, password } = data
-            const user = await dispatch(loginUser({email, password})).unwrap()
+            await dispatch(loginUser({email, password})).unwrap()
            
             reset()
             navigate('/')
         } catch (error) {
-            toast.error(error|| "Login Failed")
+            toast.error(error || "Login Failed", { toastId: "login-error" })
         }
 
     }

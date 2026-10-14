@@ -57,7 +57,7 @@ export const loginUser = createAsyncThunk(
             toast.success("LoggedIn Successfully")
             return response.data.user
         } catch (error) {
-            return rejectWithValue(error.message)
+            return rejectWithValue(error.response?.data?.message || "Login failed")
         }
     }
 )
